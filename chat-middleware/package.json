@@ -1,0 +1,25 @@
+{
+  "name": "chat_middleware",
+  "version": "1.0.0",
+  "description": "Will handle people talking to our bot from different chat mediums and convert it into a generic form for processing by backend",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/elliottgorrell/chat-middleware.git"
+  },
+  "author": "Elliott Gorrell",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "express-async-await": "^1.1.0",
+    "request": "^2.85.0",
+    "serverless-http": "^1.5.5"
+  },
+  "devDependencies": {
+    "nock": "^9.2.5",
+    "serverless-offline": "^3.20.3"
+  }
+}

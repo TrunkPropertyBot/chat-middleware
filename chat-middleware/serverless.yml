@@ -11,7 +11,7 @@ provider:
 
 functions:
   express_server:
-    handler: app.handler
+    handler: src/index.handler
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'

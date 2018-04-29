@@ -10,6 +10,9 @@ module.exports = (app) => {
     // We just need to echo this back to them
     if (req.body.challenge) return res.status(200).json({ challenge: req.body.challenge });
 
+    // Ignore bots own messages
+    if (req.body.event.subtype === 'bot_message') return res.status(200);
+
     const eventType = req.body.event.type;
 
     if (eventType === 'message') {

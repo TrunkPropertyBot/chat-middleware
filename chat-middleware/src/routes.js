@@ -20,7 +20,7 @@ module.exports = (app) => {
         const channelID = req.body.event.channel;
         const response = await slack.getResponse(req.body.event.text);
         log.info(`channelID: ${channelID}\nresponse: ${response}`);
-        slack.sendResponse(response, channelID);
+        await slack.sendResponse(response, channelID);
         return res.status(200).json({ message: response });
       } catch (e) {
         return res.status(500).json({ error: e });

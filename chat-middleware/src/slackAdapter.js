@@ -23,11 +23,12 @@ const sendResponse = async (message, channelID) => {
   const token = process.env.SLACK_TOKEN;
   const web = new WebClient(token);
 
-  web.chat.postMessage({ channel: channelID, text: message })
-    .then((res) => {
-      log.info('Message sent: ', res.ts);
-    })
-    .catch(err => log.error(err));
+  try {
+    const result = await web.chat.postMessage({ channel: channelID, text: message });
+    log.info('Message sent: ', result.ts);
+  } catch (e) {
+    log.error(e);
+  }
 };
 
 module.exports = { getResponse, sendResponse };

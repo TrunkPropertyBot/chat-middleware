@@ -24,8 +24,8 @@ const sendResponse = async (message, channelID) => {
   const web = new WebClient(token);
 
   try {
-    const result = await web.chat.postMessage({ channel: channelID, text: message });
-    log.info('Message sent: ', result.ts);
+    const result = await web.chat.postMessage({ channel: channelID, text: message, username: 'kermie' });
+    log.info(result);
   } catch (e) {
     log.error(e);
   }

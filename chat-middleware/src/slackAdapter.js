@@ -1,5 +1,6 @@
 const axios = require('axios');
 const { WebClient } = require('@slack/client');
+const { log } = require('./utils');
 
 // Setup Axios
 const instance = axios.create({
@@ -17,16 +18,16 @@ const getResponse = async (message) => {
 };
 
 const sendResponse = async (message, channelID) => {
-  if (typeof process.env.SLACK_TOKEN === 'undefined') throw new Error("env variable SLACK_TOKEN not set");
-  
+  if (typeof process.env.SLACK_TOKEN === 'undefined') throw new Error('env variable SLACK_TOKEN not set');
+
   const token = process.env.SLACK_TOKEN;
   const web = new WebClient(token);
 
   web.chat.postMessage({ channel: channelID, text: message })
     .then((res) => {
-      console.log('Message sent: ', res.ts);
+      log.info('Message sent: ', res.ts);
     })
-    .catch(console.error);
+    .catch(err => log.error(err));
 };
 
 module.exports = { getResponse, sendResponse };

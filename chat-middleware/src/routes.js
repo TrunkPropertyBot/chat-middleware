@@ -1,11 +1,10 @@
 const slack = require('./slackAdapter');
 
 module.exports = (app) => {
-
   // Monkey patch express so we can use async/await
   require('express-async-await')(app);
 
-  app.post('/slack/message', async (req, res, next) {
+  app.post('/slack/message', async (req, res) => {
     // Slack will send us a challenge on first contact to verify our api exists
     // We just need to echo this back to them
     if (req.body.challenge) return res.status(200).json({ challenge: req.body.challenge });
@@ -23,5 +22,6 @@ module.exports = (app) => {
         return res.status(500).json({ error: e });
       }
     }
+    return res.status(500).json({ error: 'something went wrong' });
   });
 };

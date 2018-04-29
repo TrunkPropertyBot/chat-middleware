@@ -1,7 +1,7 @@
-const express = require('express')
+const express = require('express');
 const bodyParser = require('body-parser');
 
-let app = express()
+const app = express();
 app.use(bodyParser.json({ limit: '1mb' }));
 
 // Bootstrap the application routes

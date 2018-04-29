@@ -1,11 +1,13 @@
 {
   "extends": "airbnb-base",
   "plugins": [
-    "import"
+    "import",
+    "jest"
   ],
   "env": {
     "browser":false,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "rules": {
     "indent": [2, 2],

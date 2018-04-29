@@ -1,6 +1,7 @@
-const {slack} = require('./slackAdapter');
+const slack = require('./slackAdapter');
 
 module.exports = (app) => {
+
   // Monkey patch express so we can use async/await
   require('express-async-await')(app)
 
@@ -12,8 +13,13 @@ module.exports = (app) => {
     let eventType = req.body.event.type;
 
     if (eventType === 'message'){
-      slack.getReponse(req.body.event.text);
-      console.log(`received message: ${req.body.event.text}`);
+      try {
+        const response = await slack.getResponse(req.body.event.text);
+        return res.status(200).json({"message":response});
+      }
+      catch(e) {
+        return res.status(500).json({"error":e});
+      }
     }
   });
 

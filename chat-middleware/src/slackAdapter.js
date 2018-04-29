@@ -1,18 +1,18 @@
 const axios = require('axios');
 
-const getReponse = (message) => {
+const getResponse = async (message) => {
   // Setup Axios
   const instance = axios.create({
-    baseURL: 'https://if6j7w7nk6.execute-api.ap-southeast-2.amazonaws.com/dev/message',
+    baseURL: 'https://if6j7w7nk6.execute-api.ap-southeast-2.amazonaws.com',
     timeout: 5000
   });
 
   try {
-    const response = await instance.post({message:message});
-    return response.data;
+    const response = await instance.post('/dev/message',{message:message});
+    return response.data.message;
   } catch(e){
-    console.error(e);
+    throw new Error(e);
   }
 }
 
-module.exports = {getReponse}
+module.exports = {getResponse}

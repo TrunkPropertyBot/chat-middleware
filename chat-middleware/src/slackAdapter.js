@@ -9,7 +9,7 @@ const getResponse = async (message) => {
 
   try {
     const response = await instance.post('/dev/message',{message:message});
-    return response.data.message;
+    return response.data.output.text;
   } catch(e){
     throw new Error(e);
   }
